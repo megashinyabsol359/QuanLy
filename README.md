@@ -1,2 +1,6 @@
 # QLHS
-In GUI/App.config line 4 change your server name by your SQL server name
+TRẦN THÚY TUYỀN – 1712891
+TÔ HOÀNG TRUNG – 1712849
+TRẦN THỊ THANH TRÚC – 1760218
+NGUYỄN PHÚC ÂN– 20120242
+
