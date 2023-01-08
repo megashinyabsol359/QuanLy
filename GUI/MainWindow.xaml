@@ -1,0 +1,227 @@
+﻿<Window x:Class="GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:GUI"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Height="768" Width="1400"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        FontSize="25"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80"/>
+            <!--Left Navigation Menu-->
+            <ColumnDefinition Width="*"/>
+            <!--Content-->
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <!--Top Navigation Menu-->
+            <RowDefinition Height="*"/>
+            <!--Content-->
+        </Grid.RowDefinitions>
+
+        <!--#region Logo-->
+        <StackPanel 
+            Background="{StaticResource SecondaryColor}">
+        </StackPanel>
+        <Image x:Name="CornerIcon" Height="40"
+                   
+                   Width="40"
+                   Stretch="Uniform"
+                   Source="Assets/Icons/student.png">
+        </Image>
+        <!--#endregion-->
+
+        <!--#region Top Navigation-->
+        <Grid Grid.Column="1"
+              Background="{StaticResource PrimaryLightColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <!--Header to move window-->
+                <RowDefinition/>
+                <!--Content-->
+            </Grid.RowDefinitions>
+
+            <!--#region Header-->
+            <!--#region Left Corner-->
+            <Polygon Fill="{StaticResource HeaderColor}"
+                     HorizontalAlignment="Left"
+                     Margin="40,0,100,0"
+                     Stretch="Uniform"
+                     Height="10"
+                     VerticalAlignment="Top"
+                     MouseDown="Polygon_MouseDown">
+                <Polygon.Points>
+                    <Point X="0" Y="0"/>
+                    <Point X="4" Y="4"/>
+                    <Point X="4" Y="0"/>
+                </Polygon.Points>
+            </Polygon>
+            <!--#endregion-->
+
+            <!--#region Center-->
+            <Rectangle Fill="{StaticResource HeaderColor}"
+                       Margin="50,0,110,0"
+                       HorizontalAlignment="Stretch"
+                       MouseDown="Polygon_MouseDown"></Rectangle>
+            <!--#endregion-->
+
+            <!--#region Right Corner-->
+            <Polygon Fill="{StaticResource HeaderColor}"
+                     HorizontalAlignment="Right"
+                     Margin="40,0,100,0"
+                     Stretch="Uniform"
+                     Height="10"
+                     VerticalAlignment="Top"
+                     MouseDown="Polygon_MouseDown">
+                <Polygon.Points>
+                    <Point X="0" Y="0"/>
+                    <Point X="-4" Y="4"/>
+                    <Point X="-4" Y="0"/>
+                </Polygon.Points>
+            </Polygon>
+            <!--#endregion-->
+            <!--#endregion-->
+
+            <!--#region Window Sizing-->
+            <StackPanel Grid.RowSpan="2"
+                        Panel.ZIndex="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="8">
+                <StackPanel.Resources>
+                    <!--#region Windows Button Style-->
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Height" Value="25"/>
+                        <Setter Property="Width" Value="25"/>
+                        <Setter Property="Margin" Value="2 0"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border
+                                        Background="{TemplateBinding Background}">
+                                        <materialDesign:PackIcon Kind="{Binding Content, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                                 Height="{TemplateBinding FontSize}"
+                                                                 Width="{TemplateBinding FontSize}"
+                                                                 Foreground="{StaticResource ThemeLimeColor}"
+                                                                 HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <!--#endregion-->
+
+                    <!--#region Windows Maximize Button Style-->
+                    <Style x:Key="MaximizeButonStyle"
+                           TargetType="{x:Type Button}"
+                           BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="Content" Value="WindowMaximize"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding WindowState, ElementName=mainWindow}" Value="Maximized">
+                                <Setter Property="Content" Value="WindowRestore"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    <!--#endregion-->
+                </StackPanel.Resources>
+                <Button x:Name="MinimizeButton"
+                        Click="MinimizeButton_Click"
+                        Content="WindowMinimize"/>
+                <Button x:Name="MaximizeButton"
+                        Click="MaximizeButton_Click"
+                        Style="{StaticResource MaximizeButonStyle}"/>
+                <Button x:Name="CloseButton"
+                        Click="CloseButton_Click"
+                        Content="Close"/>
+            </StackPanel>
+            <!--#endregion-->
+
+            <!--#region Navigation-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2000"/>
+                    <!--Menu-->
+                    <ColumnDefinition Width="*"/>
+                    <!--Others-->
+                </Grid.ColumnDefinitions>
+                <!--#region Menu-->
+                <StackPanel
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="40 0">
+                    <RadioButton
+                        x:Name="ToUCStudentButton"
+                        Content="HỌC SINH"
+                        IsChecked="True"
+                        Style="{StaticResource TopNavigationMenuStyle}"
+                        Click="ToUCStudentButton_Click" Width="128"/>
+                    <RadioButton
+                        x:Name="ToUCClassButton"
+                        Content="LỚP HỌC"
+                        Style="{StaticResource TopNavigationMenuStyle}"
+                        Click="ToUCClassButton_Click" Width="115"/>
+                    <RadioButton
+                        x:Name="ToUCSubjectButton"
+                        Content="MÔN HỌC"
+                        Style="{StaticResource TopNavigationMenuStyle}"
+                        Click="ToUCSubjectButton_Click" Width="132"/>
+                    <RadioButton
+                        x:Name="ToUCSubjectReportButton"
+                        Content="BÁO CÁO"
+                        Style="{StaticResource TopNavigationMenuStyle}"
+                        Click="ToUCSubjectReportButton_Click" Width="234"/>
+                    <RadioButton
+                        x:Name="ToUCConfigButton"
+                        Content="QUY ĐỊNH"
+                        Style="{StaticResource TopNavigationMenuStyle}"
+                        Click="ToUCConfigButton_Click" Width="126"/>
+                </StackPanel>
+                <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+        <!--#endregion-->
+
+        <!--Left Navigation-->
+        <Grid Grid.Row="1" Background="{StaticResource PrimaryColor}">
+            <StackPanel
+                    Background="{StaticResource PrimaryColor}"/>
+
+            <!--#region Menu-->
+            <StackPanel>
+                <materialDesign:PackIcon Height="50"
+                                         Width="50"
+                                         HorizontalAlignment="Center"
+                                         Margin="25"
+                                         Kind="AddBold"
+                                         Foreground="{StaticResource SecondaryColor}"
+                                         Name="AddButton"
+                                         MouseDown="AddButton_MouseDown"/>
+            </StackPanel>
+            <!--#endregion-->
+
+        </Grid>
+
+        <!--#region Content-->
+        <Grid Grid.Row="1" Grid.Column="1"
+              x:Name="UCPanel"
+              Background="{StaticResource ThemeWhiteColor}">
+
+            <!--Load UC here-->
+            <ContentControl Name="Content" Content="{Binding}"/>
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+</Window>

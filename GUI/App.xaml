@@ -1,0 +1,69 @@
+﻿<Application x:Class="GUI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:local="clr-namespace:GUI"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <FontFamily x:Key="MaterialDesignFont">pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto</FontFamily>
+            <!--Windows Brushes Color Scheme-->
+            <!--#region Brushes-->
+            <SolidColorBrush x:Key="PrimaryColor" Color="#38489F"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryLightColor" Color="#0036C1"></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryColor" Color="#F3B663"/>
+            <SolidColorBrush x:Key="HeaderColor" Color="#016ADE"/>
+            <SolidColorBrush x:Key="ThemeWhiteColor" Color="#FFF0EEEE"/>
+            <SolidColorBrush x:Key="ThemeLimeColor" Color="#B0C85F"/>
+            <!--#endregion-->
+
+            <!--#region Grid View Column Header Style-->
+            <Style x:Key="GridViewColumnHeaderStyle" TargetType="GridViewColumnHeader">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+                <Setter Property="FontSize" Value="20" />
+            </Style>
+            <!--#endregion-->
+            
+            <!--#region List View Data Text Block Style-->
+            <Style x:Key="ListViewDataTextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="{StaticResource MaterialDesignFont}"/>
+            </Style>
+
+            <!--Top Navigation Menu Style-->
+            <Style x:Key="TopNavigationMenuStyle" TargetType="{x:Type RadioButton}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="{StaticResource ThemeLimeColor}"/>
+                <Setter Property="Width" Value="150"/>
+                <Setter Property="Margin" Value="15 0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type RadioButton}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <ContentPresenter x:Name="content" HorizontalAlignment="Center"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <!--Highlight Text-->
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                </Trigger>
+
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter Property="FontWeight" Value="SemiBold"/>
+                                    <Setter Property="Foreground" Value="{StaticResource ThemeWhiteColor}"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--Using Material Design-->
+            <ResourceDictionary.MergedDictionaries>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="LightBlue" SecondaryColor="Cyan" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
