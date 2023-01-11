@@ -25,3 +25,8 @@ Tra cứu học sinh
 Chuyển lớp cho học sinh
 Quy định
 Báo cáo
+
+Những điểm cần cải thiện
+Thêm đăng nhập tài khoản
+Tối ưu trải nghiệm người dung
+Sửa lỗi crash
