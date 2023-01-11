@@ -13,7 +13,7 @@ Môi trường
 Windown 10
 Database: SQLServer
 
-Chức năng
+Chức năng:
 Hồ sơ học sinh
 Danh sách lớp
 Tiếp nhận học sinh
@@ -26,7 +26,7 @@ Chuyển lớp cho học sinh
 Quy định
 Báo cáo
 
-Những điểm cần cải thiện
+Những điểm cần cải thiện:
 Thêm đăng nhập tài khoản
 Tối ưu trải nghiệm người dung
 Sửa lỗi crash
